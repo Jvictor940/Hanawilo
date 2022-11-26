@@ -1,0 +1,201 @@
+// Problem #1 
+2 == '2' // => True
+'he' == 'she' // => False 
+2 === 2 // => True
+'true' == true // => False 
+true === true // => True
+'true' != true // => True
+'true' !== true // => False
+
+// PROBLEM #2 
+/*  
+    var - All variables created with var can be reassigned, have variable hoisting meaning it can be declared after it has been used. It also has function scope so it can be accessed outside of the function.
+    
+    let - When you want your value to change throughout your code. let allows us to declare a variable that can be reassigned at any time. let does not allow variable hoisting, and let is scoped at the block level. 
+    
+    const - constant, Values cannot be changed. const has the same scoping and hoisting rules as let. Even though variables created with const cannot be reassigned does not mean they are immutable. The value cannot be overwritten however the array content or object properties can be changed. The contents of an arraay can be modified woth push(), pop(), or map(). Object Properties can be added, removed, or updated.
+*/
+
+// PROBLEM #3
+    // First-Class Function - Assigning a function to a variable
+        const firstName = () => {
+            console.log("Jerry");
+        }
+        firstName()
+    // Higher Order Function - A function that returns a function or takes other functions as arguments. 
+        function hustle() {
+            return () => {
+                console.log("Be Great!")
+            };
+        }
+
+    // CallBack Function - Passing a function as an argument to another function 
+        function sayHello() {
+            return 'Hello, ';
+        }
+
+        function greeting(helloMessage, name) {
+            console.log(helloMessage() + name);
+        }
+
+        greeting(sayHello, 'JavaScript')
+
+//PROBLEM #4
+
+const a = 'hi';  
+console.log(c); //undefined
+ 
+const someFunction = (arg) => { 
+    const b = 'bye';
+ 
+    if (arg) { 
+        const c = 'see ya!'; 
+        console.log(a); // => 'hi'
+        console.log(b); // => 'bye'
+    }  
+} 
+
+// PROBLEM #5
+const someArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+for (let num of someArray) {
+    console.log(num)
+}
+
+// PROBLEM #6 
+const firstArray = [1, 2, 3];
+const secondArray = [4, 5]
+
+// concate()
+const bothArrays = firstArray.concat(secondArray)
+console.log("Both Arrays:", bothArrays)
+
+// length property
+bothArrays.length
+
+// filter()
+const nums = bothArrays.filter((num) => {
+    return num !== 3 
+})
+console.log("Array w/o 3:", nums)
+
+// find()
+const found = bothArrays.find(five => five === 5)
+console.log('Five:', found)
+
+// slice()
+const newArr = bothArrays.slice(2, 4)
+console.log('Slice:', newArr)
+
+// splice()
+const spliceArr = [1, 2, 3, 4, 5]
+spliceArr.splice(2, 2)
+
+// includes()
+bothArrays.includes(4)
+
+// indexOf()
+bothArrays.indexOf(2)
+
+// isArray()
+Array.isArray(bothArrays)
+
+// join()
+bothArrays.join()
+
+// map()
+const mapArrays = bothArrays.map(num => num * 2)
+console.log('Mapped Arrays:', mapArrays)
+
+// pop()
+bothArrays.pop()
+
+// push()
+bothArrays.push(5, 6)
+
+// shift()
+const arr = [1, 2, 3, 4, 5]
+arr.shift()
+
+// unshift()
+arr.unshift(0, 1)
+
+// sort array from smallest to largest
+const sortArray = [9, 1, 3, 5]
+sortArray.sort()
+
+//  or 
+
+// for larger numbers
+sortArray.sort(function(a, b) {
+    return a - b 
+});
+
+// reduce() return the sum of all number
+const sumOfAllNumbers = sortArray.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+
+// PROBLEM #7 
+
+// Add a new key value pair using Object.assign()
+const someObject = {
+    color: 'black'
+}
+
+Object.assign(someObj, {name: "john doe"})
+
+// Dot Notation
+someObject.age = 22 
+
+// Bracket Notation
+someObject['address'] = '123 test address'
+
+// keys() returns an array back of all the keys in an object
+Object.keys(someObject)
+
+// Values returns an array back of all the values in an object
+Object.values(someObject)
+
+// for...in
+for (let key in someObject){
+    console.log(someObject[key])
+}
+
+// PROBLEM #8
+const numbers = [
+    {
+        num: 1
+    }, 
+    {
+        num: 2 
+    },
+    {
+        num: 3
+    },
+]
+
+for (let {num} of numbers) {
+    console.log(num)
+}
+
+// PROBLEM #9 ***
+const newSet = new Set()
+newSet.add('john doe')
+newSet.delete('john doe')
+
+// PROMBLEM #10
+const map1 = new Map()
+map1.set('name', 'john doe')
+console.log(map1.get('name'))
+map1.delete('name')
+
+// PROBLEM #11 Explain async programming
+/* Asynchronous programming is a technique thaht enables your program to start a potentially long-running task and still be able to be responsive to other events while that task runs. Rather than having to wait for that task to finish to run the rest of your program. An example of that would be making an HTTP request using fetch(). */
+
+// PROBLEM #12 Callback hell
+/* Callback hell is essentially nested callbacks stacked below one another. Every callback depends/waits for the previous callback, thereby making a pyramid structure that affects the readability and maintainability of the code. */
+
+// PROBLEM #13 What is a promise and the possible states of promises 
+/* A Promise is an object representing the eventual completion or failure of an async operation. Essentially it is a returned object to which you attach callbacks, instead of paassing callbacks into a function. */
+
+// PROBLEM #14 async/await 
+/* The async function declaration declares an async function where the await keyword is permitted within the function body. The async and await keywords enable asynchronous, promise-based behavior to be written in a cleaner style, avoiding the need to explicitly configure promise chains. Await expressions make promise-returning functions behave as though they're synchronous by suspending execution until the returned promise is fulfilled or rejected. The resolved value of the promise is treated as the return value of the await expression. */
