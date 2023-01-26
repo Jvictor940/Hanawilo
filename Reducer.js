@@ -6,7 +6,7 @@ function reducer(arr){
   return arr.reduce((total, num) => total + num, 0)
 }
 
-// given this array 
+// given this array return the sum of the numbers. 
 const array2 = [
 	{
 		num: 1
@@ -49,7 +49,7 @@ function reducer3(arr){
   }) 
 }
 
-// Turn an array of into a total of all numbers
+// Turn an array of integers into a total of all numbers
 function total(arr) {
     return arr.reduce((acc, currVal) => acc + currVal, 0)
  }
@@ -57,13 +57,23 @@ function total(arr) {
  console.log(total([1,2,3])); // 6
 
 //  Turn an array of numbers into a long string of all those numbers.
+// function stringConcat(arr) {
+//     return arr.reduce((str, currVal) => {
+//       return arr.toString();
+//     })
+//  }
+ 
+//  console.log(stringConcat([1,2,3])); // "123"
+
+ //  Turn an array of numbers into a long string of all those numbers.
 function stringConcat(arr) {
     return arr.reduce((str, currVal) => {
-      return arr.toString();
+      return str + "" + currVal;
     })
  }
  
  console.log(stringConcat([1,2,3])); // "123"
+
 
 //  Turn an array of voter objects into a count of how many people voted.
 function totalVotes(arr) {

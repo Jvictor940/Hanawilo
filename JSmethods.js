@@ -473,8 +473,3 @@ var maxProfit = function(prices) {
       // console.log("prices" ,prices)
     return maxProf;
 };
- 
- 
- 
- 
- 
