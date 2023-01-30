@@ -123,14 +123,39 @@ function longestWord(sen) {
   // SOLUTION 1 - Return a single longest word 
   // SOLUTION 2 - Return an array and include multiple words if they have the same length 
   // SOLUTION 3 - Only return an array if multiple words, otherwise return a string 
+
+  //   Create filtered array 
+  //   match takes in a regular exoression and returns a filtered array based on our regex
+  //   all thats going to be accepted in our regex is going to be between a-z and 0-9
+    const wordArr = sen.toLowerCase().match(/[a-z0-9]+/g)
+    console.log("wordArr",wordArr)
+    
+    // Sort by length 
+    const sorted = wordArr.sort((a, b) => b.length - a.length)
+    console.log("sorted" ,sorted)
   
+    // if longest word put it into an array
+    const longestWordArr = sorted.filter((word) => word.length === sorted[0].length)
+  
+    console.log("longest Word" ,longestWordArr)
+    
+    // Check if there is more than one arr val
+    if (longestWordArr.length === 1){
+      return longestWordArr[0]
+    } else {
+      return longestWordArr;
+    }
+}
+/* 
   //Split the array into an a array of strings 
 const longestStr = sen.split(' ').reduce(function(longest, currentWord) {
     return currentWord.length > longest.length ? currentWord : longest; 
 }, "");
 return longestStr
 } //reduce 
- 
+*/
+
+
 // CHALLENGE 8: ARRAY CHUNKING 
 // Split an array into chunked arrays of a specific length 
 // ex. chunkArray([1, 2, 3, 4, 5, 6, 7], 3) === [[1, 2, 3],[4, 5, 6],[7]] 
@@ -153,7 +178,14 @@ console.log(chunkArray(arr, 3));
 // ex. [[1, 2], [3, 4], [5, 6], [7]] = [1, 2, 3, 4, 5, 6, 7] 
  
 function flattenArray(arrays) {
+    // SOLUTION 1
     return arrays.flat(3);
+
+    // SOLUTION 2
+    // return [].concat(...arrays);
+
+    // SOLUTION 3 
+    // return arrays.reduce((a, b) => a.concat(b))
 }
 arr1 = [[1, 2], [3, 4], [5, 6], [7]];
 console.log(flattenArray(arr1));
@@ -164,14 +196,26 @@ console.log(flattenArray(arr1));
 // ex. 'Dormitory' === 'dirty room##' 
  
 function isAnagram(str1, str2) {
+    /*
     // Edge Case 
     if (str1.length !== str2.length) return false;
 
     // Logic 
-    if (str1.split('').sort().join('') === str2.split('').sort().join('')) 
+    if (str1.split('').sort().join('') === str2.split('').sort().join('')){
     return true;
-    else 
-    return false;  
+    } else {
+    return false;
+    }
+    */
+    return formatStr(str1) === formatStr(str2);
+    //   Helper function
+      function formatStr(str) {
+        return str.replace(/[^\w]/g, '')
+        .toLowerCase()
+        .split('')
+        .sort()
+        .join();
+      }
 }
 
 
@@ -182,18 +226,18 @@ function isAnagram(str1, str2) {
 // Z should turn to A 
 // ex. 'hello there' === 'Ifmmp UIfsf'
  
+// SOLUTION 1
 function letterChanges(str) {
     // using map because it creates a new array and modifies. 
     str = str.split('').map(convert).join('');
-    return str; 
-
+    return str;
 } 
 // making a function to pass into map. this function will take in each element in the array and modify them. 
 function convert(elem){
     // using regex to target nonalphabetical numbers. 
     let nonLetter = /\W/g; //Targets symbols that are nonalphabetical
-    let numbers = /[0-9]/g //Targets numbers 0-9.
-    let lowerCaseVowels = /[aeiou]/g // g represents a way to globally scan and match throughout the string and not just the first element it matches with. 
+    let numbers = /[0-9]/g; //Targets numbers 0-9.
+    let lowerCaseVowels = /[aeiou]/g; // g represents a way to globally scan and match throughout the string and not just the first element it matches with. 
     
     if (elem.match(nonLetter) || elem.match(numbers)){
         return elem; 
@@ -214,6 +258,20 @@ function convert(elem){
 
 }
 console.log(letterChanges('hello*3'))
+
+// SOLUTION 2 
+function letterChanges2(str){
+    let newStr = str.toLowerCase().replace(/[a-z]/gi, char => {
+        if (char === 'z'){
+            return 'a';
+        } else {
+            return String.fromCharCode(char.charCodeAt() + 1);
+        }
+    });
+
+    newStr = newStr.replace(/[aeiou]/gi, vowel => vowel.toUpperCase());
+    return newStr;
+}
 
 
 
