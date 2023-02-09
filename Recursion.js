@@ -7,6 +7,9 @@
 // reverseString('baker') // 'rekab' 
  
 function reverseString(str){ 
+    // Base Case
+    if (str.length <= 1) return str; 
+    return reverseString(str.substring(1)) + str.charAt(0);
 } 
  
 // problem 2: palidrome 
@@ -20,7 +23,14 @@ function reverseString(str){
 // palindrome('tacocat') // true 
 // palindrome('sos') // true 
  
-const palidrome = (str) => { 
+const palindrome = (str) => {
+    // Base Case 
+    if (str.length <= 1) return true;
+    if (str[0] !== str[str.length - 1]) {
+        return false
+    } else {
+        return palindrome(str.slice(1, str.length - 1))
+    }
 } 
  
 // problem 3: someRecursive 
