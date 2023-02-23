@@ -140,3 +140,39 @@ list.push(350)
 list.pushMultiple([1,2, 3, 4])
 
 console.log(list)
+
+
+// Given a linked list, return the node that occurs the most in the list.
+    
+// For example, given the following linked list: 
+
+    // 1 -> 1 -> 2 -> 2 -> 2 -> 3 -> null
+
+// This function should return the node of 2. 
+
+// The function mostFrequent(this), should take in a argument of a linked list and 
+// return a value of the node that occurs the most often.
+
+function mostFrequent() {
+    // Edge Case
+    if (!this.length) return -1; 
+
+    // Initialize our object, maxcount, and set current to the beginning of the linkedlist 
+    let frequency = []
+    let maxCount = 0 
+    let current = this.head
+
+    // loop through list, and update frequency
+    while (current.next){
+        frequency[current.value] = (frequency[current.value] || 0) + 1;  
+    }
+
+    // loop through the object and find the most Frequent 
+    for (let num in frequency){
+        maxCount = Math.max(frequency[num], maxCount)
+    }
+
+    // return maxCount
+    return maxCount; 
+
+}
