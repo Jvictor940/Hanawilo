@@ -2,7 +2,7 @@
 
 class Node {
     constructor(val) {
-      this.value = val
+      this.val = val
       this.next = null
     }
 }
@@ -128,14 +128,13 @@ class SinglyLinkedList {
         this.length++;
         return this; 
     }
-    // console.log(list)
     
     
     // Given a linked list, return the node that occurs the most in the list.
-        
+    
     // For example, given the following linked list: 
     
-        // 1 -> 1 -> 2 -> 2 -> 2 -> 3 -> null
+    // 1 -> 1 -> 2 -> 2 -> 2 -> 3 -> null
     
     // This function should return the node of 2. 
     
@@ -145,26 +144,27 @@ class SinglyLinkedList {
     mostFrequent() {
         // Edge Case
         if (!this.length) return -1; 
-    
+        
         // Initialize our object, maxcount, and set current to the beginning of the linkedlist 
         let frequency = []
         let maxCount = 0 
         let current = this.head
-    
+        
         // loop through list, and update frequency
         while (current.next){
-            frequency[current.val] = (frequency[current.val] || 0) + 1; 
+            frequency[current.val] = (frequency[current.val] || 1) + 1; 
             current = current.next 
+            // console.log('frequency', frequency)
         }
-    
+        
         // loop through the object and find the most Frequent 
         for (let num in frequency){
             maxCount = Math.max(frequency[num], maxCount)
         }
-    
+        
         // return maxCount
         return maxCount; 
-    
+        
     }
     
     /*
@@ -185,7 +185,7 @@ class SinglyLinkedList {
        
        // loop through list to find odd number
        while (current.next){
-           console.log('current', current.val)
+           console.log('current', current.next)
            if (current.val % 2 === 1){
                oddNum = current.val;
                current = current.next;
@@ -206,6 +206,7 @@ list.push(250)
 list.push(350)
 list.pushMultiple([1,2, 3, 4])
 
+// console.log('list' ,list)
 
 var mostFreqList = new SinglyLinkedList()
 
@@ -226,4 +227,4 @@ findOddList.push(3)
 findOddList.push(4)
 
 
-console.log('oddNum', findOddList.findOdd())
+// console.log('oddNum' ,findOddList.findOdd())
